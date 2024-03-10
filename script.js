@@ -1,6 +1,15 @@
 
 // save reference to important DOM elements
 var timeDisplayEl = $('#currentDay');
+var nineEl = $('#hour-9');
+var tenEl = $('#hour-10');
+var elevenEl = $('#hour-11');
+var twelveEl = $('#hour-12');
+var oneEl = $('#hour-1');
+var twoEl = $('#hour-2');
+var threeEl = $('#hour-3');
+var fourEl = $('#hour-4');
+var fiveEl = $('#hour-5');
 
 // handle displaying the time
 function displayTime() {
@@ -9,6 +18,19 @@ function displayTime() {
 }
 
 displayTime(); 
+
+/*
+var projectDate = dayjs(project.Date);
+var dueDateday = dayjs(projectDate); 
+var daysBetween = dueDateDay.diff(today, "day");
+
+if (daysBetween <= 0) {
+  newRow.addClass("past");
+  newRow.addClass("present");
+  newRow.addClass("future");
+}
+
+*/
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
