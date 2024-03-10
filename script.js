@@ -5,11 +5,11 @@ var nineEl = $('#hour-9');
 var tenEl = $('#hour-10');
 var elevenEl = $('#hour-11');
 var twelveEl = $('#hour-12');
-var oneEl = $('#hour-1');
-var twoEl = $('#hour-2');
-var threeEl = $('#hour-3');
-var fourEl = $('#hour-4');
-var fiveEl = $('#hour-5');
+var oneEl = $('#hour-13');
+var twoEl = $('#hour-14');
+var threeEl = $('#hour-15');
+var fourEl = $('#hour-16');
+var fiveEl = $('#hour-17');
 
 // handle displaying the time
 function displayTime() {
@@ -17,7 +17,9 @@ function displayTime() {
   timeDisplayEl.text(rightNow);
 }
 
-displayTime(); 
+var timeBlocks = [
+  nine: nineEl, 
+]
 
 /*
 var projectDate = dayjs(project.Date);
@@ -55,3 +57,5 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+displayTime(); 
