@@ -21,6 +21,16 @@ var textAreaFifthteenInput = $("#text-area-15");
 var textAreaSixteenInput = $("#text-area-16"); 
 var textAreaSeventeenInput = $("#text-area-17"); 
 
+var buttonNine = $("#button-9");
+var buttonTen = $("#button-10");
+var buttonEleven = $("#button-11");
+var buttonTwelve = $("#button-12");
+var buttonThirteen = $("#button-13");
+var buttonFourteen = $("#button-14");
+var buttonFifthteen = $("#button-15");
+var buttonSixteen = $("#button-16");
+var buttonSeventeen = $("#button-17");
+
 // handle displaying the time
 function displayTime() {
   var rightNow = dayjs().format('dddd, MMMM D');
@@ -60,12 +70,9 @@ $(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
 });
 
 function handleSaveButton(event) {
-
   event.preventDefault();   
 
   var textNine = textAreaNineInput.val();
@@ -78,6 +85,24 @@ function handleSaveButton(event) {
   var textSixteen = textAreaSixteenInput.val();
   var textSeventeen = textAreaSeventeenInput.val();
 
+  newEvent = readEventFromStorage();
+
+  newEvent.push();
+  saveEventToStorage();
+
+  printProjectData();
+
 };
 
+buttonNine.on('click', handleSaveButton);
+buttonTen.on('click', handleSaveButton);
+buttonEleven.on('click', handleSaveButton);
+buttonTwelve.on('click', handleSaveButton);
+buttonThirteen.on('click', handleSaveButton);
+buttonFourteen.on('click', handleSaveButton);
+buttonFifthteen.on('click', handleSaveButton);
+buttonSixteen.on('click', handleSaveButton);
+buttonSeventeen.on('click', handleSaveButton);
+
 displayTime(); 
+printProjectData();
