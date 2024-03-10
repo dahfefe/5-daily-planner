@@ -5,21 +5,27 @@ var nineEl = $('#hour-9');
 var tenEl = $('#hour-10');
 var elevenEl = $('#hour-11');
 var twelveEl = $('#hour-12');
-var oneEl = $('#hour-13');
-var twoEl = $('#hour-14');
-var threeEl = $('#hour-15');
-var fourEl = $('#hour-16');
-var fiveEl = $('#hour-17');
+var thirteenEl = $('#hour-13');
+var fourteenEl = $('#hour-14');
+var fifthteenEl = $('#hour-15');
+var sixteenEl = $('#hour-16');
+var seventeenEl = $('#hour-17');
+
+var textAreaNineInput = $("#text-area-9"); 
+var textAreaTenInput = $("#text-area-10"); 
+var textAreaElevenInput = $("#text-area-11"); 
+var textAreaTwelveInput = $("#text-area-12"); 
+var textAreaThirteenInput = $("#text-area-13"); 
+var textAreaFourteenInput = $("#text-area-14"); 
+var textAreaFifthteenInput = $("#text-area-15"); 
+var textAreaSixteenInput = $("#text-area-16"); 
+var textAreaSeventeenInput = $("#text-area-17"); 
 
 // handle displaying the time
 function displayTime() {
   var rightNow = dayjs().format('dddd, MMMM D');
   timeDisplayEl.text(rightNow);
 }
-
-var timeBlocks = [
-  nine: nineEl, 
-]
 
 /*
 var projectDate = dayjs(project.Date);
@@ -57,5 +63,21 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+function handleSaveButton(event) {
+
+  event.preventDefault();   
+
+  var textNine = textAreaNineInput.val();
+  var textTen = textAreaTenInput.val();
+  var textEleven = textAreaElevenInput.val();
+  var textTwelve = textAreaTwelveInput.val();
+  var textThirteen = textAreaThirteenInput.val();
+  var textFourteen = textAreaFourteenInput.val();
+  var textFifthteen = textAreaFifthteenInput.val();
+  var textSixteen = textAreaSixteenInput.val();
+  var textSeventeen = textAreaSeventeenInput.val();
+
+};
 
 displayTime(); 
