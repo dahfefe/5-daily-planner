@@ -37,6 +37,32 @@ function displayTime() {
   timeDisplayEl.text(rightNow);
 }
 
+function colorCodeBlocks() {
+  
+  var timeBlocks = [
+    nineEl = 9,
+    tenEl = 10,
+    elevenEl = 11,
+    twelveEl = 12,
+    thirteenEl = 13,
+    fourteenEl = 14,
+    fifthteenEl = 15,
+    sixteenEl = 16,
+    seventeenEl = 17,
+  ];
+
+  var currentHour = dayjs().format('');
+
+  for (var i = 0; i < timeBlocks.length; i++) {  
+    if (daysBetween <= 0) {
+      newRow.addClass("past");
+      newRow.addClass("present");
+      newRow.addClass("future");
+    }
+  }
+}
+
+
 /*
 var projectDate = dayjs(project.Date);
 var dueDateday = dayjs(projectDate); 
@@ -72,6 +98,10 @@ $(function () {
   // attribute of each time-block be used to do this?
 });
 
+function printEventData() {
+  
+}
+
 function handleSaveButton(event) {
   event.preventDefault();   
 
@@ -84,13 +114,24 @@ function handleSaveButton(event) {
   var textFifthteen = textAreaFifthteenInput.val();
   var textSixteen = textAreaSixteenInput.val();
   var textSeventeen = textAreaSeventeenInput.val();
+  
+  var allBlocks = {
+    textNine: tNine,
+    textTen: tTen,
+    textEleven: tEleven,
+    textTwelve: tTwelve,
+    textThirteen: tThirteen,
+    textFourteen: tFourteen,
+    textFifthteen: tFifthteen,
+    textSixteen: tSixteen,
+    textSeventeen: tSeventeen,
+  };
 
-  newEvent = readEventFromStorage();
+  var data = readEventFromStorage();
+  data.push(allBlocks);
+  saveDatatoStorage();
 
-  newEvent.push();
-  saveEventToStorage();
-
-  printProjectData();
+  printEventData();
 
 };
 
@@ -105,4 +146,4 @@ buttonSixteen.on('click', handleSaveButton);
 buttonSeventeen.on('click', handleSaveButton);
 
 displayTime(); 
-printProjectData();
+printEventData();
