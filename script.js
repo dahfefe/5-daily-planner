@@ -37,45 +37,6 @@ function displayTime() {
   timeDisplayEl.text(rightNow);
 }
 
-function colorCodeBlocks() {
-  
-  var timeBlocks = [
-    nineEl = 9,
-    tenEl = 10,
-    elevenEl = 11,
-    twelveEl = 12,
-    thirteenEl = 13,
-    fourteenEl = 14,
-    fifthteenEl = 15,
-    sixteenEl = 16,
-    seventeenEl = 17,
-  ];
-
-  var currentHour = dayjs().format('');
-
-  for (var i = 0; i < timeBlocks.length; i++) {  
-    if (daysBetween <= 0) {
-      newRow.addClass("past");
-      newRow.addClass("present");
-      newRow.addClass("future");
-    }
-  }
-}
-
-
-/*
-var projectDate = dayjs(project.Date);
-var dueDateday = dayjs(projectDate); 
-var daysBetween = dueDateDay.diff(today, "day");
-
-if (daysBetween <= 0) {
-  newRow.addClass("past");
-  newRow.addClass("present");
-  newRow.addClass("future");
-}
-
-*/
-
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
@@ -98,8 +59,45 @@ $(function () {
   // attribute of each time-block be used to do this?
 });
 
+readDataFromStorage ()
+
+
 function printEventData() {
-  
+
+  nineEl.empty();
+  tenEl.empty();
+  elevenEl.empty();
+  twelveEl.empty();
+  thirteenEl.empty();
+  fourteenEl.empty();
+  fifthteenEl.empty();
+  sixteenEl.empty();
+  seventeenEl.empty();
+
+  var timeBlocks = [
+    nineEl = 9,
+    tenEl = 10,
+    elevenEl = 11,
+    twelveEl = 12,
+    thirteenEl = 13,
+    fourteenEl = 14,
+    fifthteenEl = 15,
+    sixteenEl = 16,
+    seventeenEl = 17,
+  ];
+
+  var currentHour = dayjs().format('');
+
+  for (var i = 0; i < timeBlocks.length; i++) {  
+    if (currentHour >= timeBlocks[i]) {
+      newRow.addClass("past");
+    } else if (currentHour === timeBlocks[i]) {
+      newRow.addClass("present");
+    } else (currentHour <= timeBlocks[i]) {
+      newRow.addClass("future");
+    }
+  }
+
 }
 
 function handleSaveButton(event) {
@@ -127,7 +125,7 @@ function handleSaveButton(event) {
     textSeventeen: tSeventeen,
   };
 
-  var data = readEventFromStorage();
+  var data = readDataFromStorage();
   data.push(allBlocks);
   saveDatatoStorage();
 
