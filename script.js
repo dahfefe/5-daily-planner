@@ -33,8 +33,8 @@ var buttonSeventeen = $("#button-17");
 
 // handle displaying the time
 function displayTime() {
-  var rightNow = dayjs().format('dddd, MMMM D');
-  timeDisplayEl.text(rightNow);
+  var currentTime = dayjs().format('dddd, MMMM D');
+  timeDisplayEl.text(currentTime);
 }
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
@@ -59,45 +59,37 @@ $(function () {
   // attribute of each time-block be used to do this?
 });
 
-readDataFromStorage ()
+function readDataFromStorage () {
+  var data = localStorage.getItem('data');
+  if (data) {
+    data = JSON.parse(data);
+  } else {
+    data = [];
+  }
+  return data;
+}
 
+function saveDataToStorage(data) {
+  localStorage.setItem('data', JSON.stringify(data));
+}
 
 function printEventData() {
 
-  nineEl.empty();
-  tenEl.empty();
-  elevenEl.empty();
-  twelveEl.empty();
-  thirteenEl.empty();
-  fourteenEl.empty();
-  fifthteenEl.empty();
-  sixteenEl.empty();
-  seventeenEl.empty();
+  var timeBlocks = [ 9, 10, 11, 12, 13, 14, 15, 16, 17];
 
-  var timeBlocks = [
-    nineEl = 9,
-    tenEl = 10,
-    elevenEl = 11,
-    twelveEl = 12,
-    thirteenEl = 13,
-    fourteenEl = 14,
-    fifthteenEl = 15,
-    sixteenEl = 16,
-    seventeenEl = 17,
-  ];
-
-  var currentHour = dayjs().format('');
+  var currentHour = dayjs().format('HH');
 
   for (var i = 0; i < timeBlocks.length; i++) {  
-    if (currentHour >= timeBlocks[i]) {
-      newRow.addClass("past");
+    let hourDiv = document.getElementById(`hour-${timeBlocks[i]}`)
+    console.log(hourDiv);
+    if (currentHour > timeBlocks[i]) {
+      hourDiv.setAttribute('class', 'row time-block past');
     } else if (currentHour === timeBlocks[i]) {
-      newRow.addClass("present");
-    } else (currentHour <= timeBlocks[i]) {
-      newRow.addClass("future");
+      hourDiv.setAttribute('class', 'row time-block present');
+    } else {
+      hourDiv.setAttribute('class', 'row time-block future');
     }
   }
-
 }
 
 function handleSaveButton(event) {
@@ -127,7 +119,7 @@ function handleSaveButton(event) {
 
   var data = readDataFromStorage();
   data.push(allBlocks);
-  saveDatatoStorage();
+  saveDatatoStorage(data);
 
   printEventData();
 
