@@ -79,6 +79,14 @@ function printEventData() {
   textAreaSixteenInput.empty();
   textAreaSeventeenInput.empty();
 
+  var data = readDataFromStorage();
+  
+  /*
+  for (var i = 0; i < data.length; i++) {
+    allBlocks[i].text(data[i]);
+  }
+  */
+ 
   var timeBlocks = [ 9, 10, 11, 12, 13, 14, 15, 16, 17];
   var currentHour = dayjs().format('HH');
   console.log(currentHour);
@@ -110,20 +118,20 @@ function handleSaveButton(event) {
   var textSeventeen = textAreaSeventeenInput.val();
   
   var allBlocks = {
-    textNine: tNine,
-    textTen: tTen,
-    textEleven: tEleven,
-    textTwelve: tTwelve,
-    textThirteen: tThirteen,
-    textFourteen: tFourteen,
-    textFifthteen: tFifthteen,
-    textSixteen: tSixteen,
-    textSeventeen: tSeventeen,
+    tNine: textNine, 
+    tTen: textTen,
+    tEleven: textEleven,
+    tTwelve: textTwelve,
+    tThirteen: textThirteen,
+    tFourteen: textFourteen,
+    tFifthteen: textFifthteen,
+    tSixteen: textSixteen,
+    tSeventeen: textSeventeen,
   };
 
   var data = readDataFromStorage();
   data.push(allBlocks);
-  saveDatatoStorage(data);
+  saveDataToStorage(data);
 
   printEventData();
 
