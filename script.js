@@ -11,6 +11,7 @@ var fifthteenEl = $('#hour-15');
 var sixteenEl = $('#hour-16');
 var seventeenEl = $('#hour-17');
 
+// reference to text area per time block
 var textAreaNineInput = $("#text-area-9"); 
 var textAreaTenInput = $("#text-area-10"); 
 var textAreaElevenInput = $("#text-area-11"); 
@@ -21,6 +22,7 @@ var textAreaFifthteenInput = $("#text-area-15");
 var textAreaSixteenInput = $("#text-area-16"); 
 var textAreaSeventeenInput = $("#text-area-17"); 
 
+// reference to each button per time block
 var buttonNine = $("#button-9");
 var buttonTen = $("#button-10");
 var buttonEleven = $("#button-11");
@@ -53,6 +55,7 @@ $(function () {
   // attribute of each time-block be used to do this?
 });
 
+// local storage function to read data in local storage
 function readDataFromStorage () {
   var data = localStorage.getItem('data');
   if (data) {
@@ -63,10 +66,12 @@ function readDataFromStorage () {
   return data;
 }
 
+// function to save data to local storage
 function saveDataToStorage(data) {
   localStorage.setItem('data', JSON.stringify(data));
 }
 
+// printing data from page and returning any saved data in local storage
 function printEventData() {
 
   textAreaNineInput.empty();
@@ -79,14 +84,13 @@ function printEventData() {
   textAreaSixteenInput.empty();
   textAreaSeventeenInput.empty();
 
-  var data = readDataFromStorage();
-  
-  /*
-  for (var i = 0; i < data.length; i++) {
-    allBlocks[i].text(data[i]);
-  }
-  */
+  readDataFromStorage();
  
+  colorCodeEachBlock();
+}
+
+// function to color code each time block based on the present time of the day
+function colorCodeEachBlock () {
   var timeBlocks = [ 9, 10, 11, 12, 13, 14, 15, 16, 17];
   var currentHour = dayjs().format('HH');
   console.log(currentHour);
@@ -104,9 +108,11 @@ function printEventData() {
   }
 }
 
+// function for instructions when a button is clicked
 function handleSaveButton(event) {
   event.preventDefault();   
 
+  // code to erase all text inputs in time blocks
   var textNine = textAreaNineInput.val();
   var textTen = textAreaTenInput.val();
   var textEleven = textAreaElevenInput.val();
@@ -117,6 +123,7 @@ function handleSaveButton(event) {
   var textSixteen = textAreaSixteenInput.val();
   var textSeventeen = textAreaSeventeenInput.val();
   
+  // object formatted for better structure when data is saved in local storage
   var allBlocks = {
     tNine: textNine, 
     tTen: textTen,
@@ -129,14 +136,16 @@ function handleSaveButton(event) {
     tSeventeen: textSeventeen,
   };
 
-  var data = readDataFromStorage();
-  data.push(allBlocks);
-  saveDataToStorage(data);
+  var dataSave = readDataFromStorage();
+  dataSave.push(allBlocks);
+  saveDataToStorage(dataSave);
+  console.log(allBlocks);
 
   printEventData();
 
 };
 
+// functions to call when a button is clicked
 buttonNine.on('click', handleSaveButton);
 buttonTen.on('click', handleSaveButton);
 buttonEleven.on('click', handleSaveButton);
@@ -147,5 +156,9 @@ buttonFifthteen.on('click', handleSaveButton);
 buttonSixteen.on('click', handleSaveButton);
 buttonSeventeen.on('click', handleSaveButton);
 
+// functions called right away to print page (which includes retrieving data in local storage) and displaying updated time
 displayTime(); 
 printEventData();
+
+// how do we use local storage to repost the object back into the correct timeBlocks?
+// also, note that our local storage grows by a new array, how do we use the most recent object?
