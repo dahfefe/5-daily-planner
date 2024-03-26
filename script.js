@@ -84,9 +84,23 @@ function printEventData() {
   textAreaSixteenInput.empty();
   textAreaSeventeenInput.empty();
 
-  readDataFromStorage();
- 
   colorCodeEachBlock();
+
+  // Utilizes recall from local storage to repopulate last saved text based on corresponding key within the object
+  var lastInputs = readDataFromStorage();
+  console.log(lastInputs);
+  if (lastInputs !== null) {
+    textAreaNineInput.val(lastInputs.tNine);
+    textAreaTenInput.val(lastInputs.tTen);
+    textAreaElevenInput.val(lastInputs.tEleven);
+    textAreaTwelveInput.val(lastInputs.tTwelve);
+    textAreaThirteenInput.val(lastInputs.tThirteen);
+    textAreaFourteenInput.val(lastInputs.tFourteen);
+    textAreaFifthteenInput.val(lastInputs.tFifthteen);
+    textAreaSixteenInput.val(lastInputs.tSixteen);
+    textAreaSeventeenInput.val(lastInputs.tSeventeen);
+  }
+
 }
 
 // function to color code each time block based on the present time of the day
@@ -137,11 +151,11 @@ function handleSaveButton(event) {
   };
 
   var dataSave = readDataFromStorage();
-  dataSave.push(allBlocks);
-  saveDataToStorage(dataSave);
+  // dataSave.push(allBlocks);
+  saveDataToStorage(allBlocks);
   console.log(allBlocks);
 
-  printEventData();
+  printEventData(allBlocks);
 
 };
 
